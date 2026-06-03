@@ -797,6 +797,7 @@ footer {
 </style>
 </head>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <body>
 
 <div id="cursor"></div>
@@ -1516,7 +1517,9 @@ function togglePlay() {
 function changeVolume(value) {
     audio.volume = value / 100;
 }
-  <script>
+
+</script>
+<script>
   const SUPABASE_URL = "https://pfpaocgjsriksfjtfqas.supabase.co";
   const SUPABASE_ANON_KEY = "sb_publishable_XJ-Y6BuxV3jhN4QB6ZsaJg_aobaIWlF";
 
@@ -1532,7 +1535,6 @@ function changeVolume(value) {
 
   document.getElementById(`photo${i}`).src = data.publicUrl;
 }
-</script>
 </script>
 </body>
 </html>
