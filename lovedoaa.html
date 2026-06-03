@@ -796,6 +796,7 @@ footer {
 }
 </style>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <body>
 
 <div id="cursor"></div>
@@ -851,8 +852,7 @@ footer {
 
     <!-- صورة 1 -->
     <div class="gallery-item reveal" onclick="openLightbox('photo1')">
-      <img src="images/photo1.jpeg" alt="ذكرى ١"
-           class="gallery-img"
+      <img id="photo1" class="gallery-img" alt="ذكرى ١"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-placeholder" style="display:none">
         <div class="gallery-placeholder-icon">📷</div>
@@ -864,8 +864,8 @@ footer {
 
     <!-- صورة 2 -->
     <div class="gallery-item reveal" onclick="openLightbox('photo2')">
-      <img src="images/photo2.jpeg" alt="ذكرى ٢"
-           class="gallery-img"
+      <img id="photo2" class="gallery-img" alt="ذكرى ٢"
+
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-placeholder" style="display:none">
         <div class="gallery-placeholder-icon">📷</div>
@@ -877,7 +877,7 @@ footer {
 
     <!-- صورة 3 -->
     <div class="gallery-item reveal" onclick="openLightbox('photo3')">
-      <img src="images/photo3.jpeg" alt="ذكرى ٣"
+      <img src="https://pfpaocgjsriksfjtfqas.supabase.co/storage/v1/object/public/images/photo6.jpeg" alt="ذكرى ٣"
            class="gallery-img"
            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="gallery-placeholder" style="display:none">
@@ -1515,6 +1515,21 @@ function togglePlay() {
 
 function changeVolume(value) {
     audio.volume = value / 100;
+}
+  const SUPABASE_URL = "https://pfpaocgjsriksfjtfqas.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_XJ-Y6BuxV3jhN4QB6ZsaJg_aobaIWlF";
+
+  const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+  );
+  for(let i = 1; i <= 6; i++) {
+  const { data } = supabase
+    .storage
+    .from('images')
+    .getPublicUrl(`photo${i}.jpeg`);
+
+  document.getElementById(`photo${i}`).src = data.publicUrl;
 }
 </script>
 </body>
